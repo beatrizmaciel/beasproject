@@ -102,7 +102,19 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<liquibase.properties.file>
+					liquibase.properties
+				</liquibase.properties.file>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+	</profiles>
 	<build>
 		<plugins>
 			<plugin>
@@ -131,6 +143,28 @@
 						</exclude>
 					</excludes>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<version>4.31.1</version>
+				<configuration>
+					<propertyFile>${liquibase.properties.file}</propertyFile>
+					<changeLogFile>db/changelog/db.changelog-master.xml</changeLogFile>
+					<outputFileEncoding>UTF-8</outputFileEncoding>
+					<logging>info</logging>
+					<promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
+					<verbose>true</verbose>
+				</configuration>
+				<executions>
+					<execution>
+						<id>validate-changelog</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>validate</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
