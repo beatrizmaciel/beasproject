@@ -1,8 +1,10 @@
 package com.project.bea.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
+@NoArgsConstructor
 public abstract class Organism {
     private String name;
     private String family;
