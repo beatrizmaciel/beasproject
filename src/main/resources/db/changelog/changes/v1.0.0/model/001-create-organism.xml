@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+            http://www.liquibase.org/xml/ns/dbchangelog
+            https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet id="1-create-organism" author="beatriz">
+
+        <createTable tableName="organism">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true"
+                             nullable="false"/>
+            </column>
+
+            <column name="names" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="family" type="VARCHAR(255)"/>
+
+            <column name="kingdom" type="VARCHAR(255)"/>
+
+        </createTable>
+
+    </changeSet>
+</databaseChangeLog>
